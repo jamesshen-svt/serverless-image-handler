@@ -1,6 +1,5 @@
 # AWS Serverless Image Handler Lambda wrapper for Thumbor
 A solution to dynamically handle images on the fly, utilizing Thumbor (thumbor.org).
-Published version, additional details and documentation are available here: https://aws.amazon.com/answers/web-applications/serverless-image-handler/
 
 _Note:_ it is recommend to build the application binary on Amazon Linux.
 
