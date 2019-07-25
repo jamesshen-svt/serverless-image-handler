@@ -8,7 +8,7 @@ Description: >-
 Parameters:
   OriginS3Bucket:
     Description: S3 bucket that will source your images.
-    Default: original-images-bucket-name
+    Default: kaolahome-images
     Type: String
     ConstraintDescription: Must be a valid S3 Bucket.
     MinLength: '1'
@@ -16,9 +16,10 @@ Parameters:
     AllowedPattern: '[a-zA-Z][a-zA-Z0-9-.]*'
   OriginS3BucketRegion:
     Description: S3 bucket Region that will source your images.
-    Default: us-east-1
+    Default: ap-east-1
     Type: String
     AllowedValues:
+      - ap-east-1
       - ap-south-1
       - ap-northeast-1
       - ap-northeast-2
@@ -36,7 +37,7 @@ Parameters:
       - us-west-2
   EnableCors:
     Description: Will this API require Cross-Origin Resource Sharing (CORS) support?
-    Default: 'No'
+    Default: 'Yes'
     Type: String
     AllowedValues:
       - 'Yes'
@@ -77,7 +78,7 @@ Parameters:
       Do you want to deploy a demo Serverless Image Handler UI to your original
       images bucket?
     Type: String
-    Default: 'Yes'
+    Default: 'No'
     AllowedValues:
       - 'Yes'
       - 'No'
@@ -132,8 +133,8 @@ Mappings:
     ImageHandler:
       # SO-SIH-153 - 07/16/2018 - Build fixes
       # Adding variables for S3 bucket and versions
-      S3Bucket: %%BUCKET_NAME%%
-      S3Key: serverless-image-handler/%%VERSION%%/serverless-image-handler.zip
+      S3Bucket: slsimagehandler
+      S3Key: serverless-image-handler/3.1/serverless-image-handler.zip
       Name: serverless-image-handler
       Handler: image_handler/lambda_function.lambda_handler
       Description: >-
@@ -143,9 +144,9 @@ Mappings:
       Timeout: '10'
       MemorySize: '1536'
     CustomResource:
-      S3Bucket: %%BUCKET_NAME%%
+      S3Bucket: slsimagehandler
       S3Key: >-
-        serverless-image-handler/%%VERSION%%/serverless-image-handler-custom-resource.zip
+        serverless-image-handler/3.1/serverless-image-handler-custom-resource.zip
       Name: serverless-image-handler-custom-resource
       Handler: image_handler_custom_resource/cfn_custom_resource.lambda_handler
       Description: >-
@@ -157,8 +158,8 @@ Mappings:
       MemorySize: '128'
   UI:
     Src:
-      Bucket: %%BUCKET_NAME%%
-      Key: serverless-image-handler/%%VERSION%%/serverless-image-handler-ui.zip
+      Bucket: slsimagehandler
+      Key: serverless-image-handler/3.1/serverless-image-handler-ui.zip
     FindReplace:
       DomainName: '%%APIEndpoint%%'
       CloudFrontURL: '%%CloudFrontURL%%'
@@ -192,6 +193,8 @@ Mappings:
       endpoint: 's3-ap-southeast-2.amazonaws.com'
     ap-south-1:
       endpoint: 's3.ap-south-1.amazonaws.com'
+    ap-east-1:
+      endpoint: 's3.ap-east-1.amazonaws.com'
     sa-east-1:
       endpoint: 's3-sa-east-1.amazonaws.com'
 

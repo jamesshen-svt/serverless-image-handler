@@ -124,8 +124,8 @@ pip install source/image-handler/. --target=$VIRTUAL_ENV/lib/python2.7/site-pack
 cd $VIRTUAL_ENV
 
 #installing optipng pngcrush gifsicle pngquant jpegtran
-echo "yum install optipng pngcrush gifsicle libjpeg* pngquant ImageMagick-devel -y"
-yum install optipng pngcrush gifsicle libjpeg* pngquant ImageMagick-devel -y
+echo "yum --enablerepo=epel  install optipng pngcrush gifsicle libjpeg* pngquant ImageMagick-devel -y"
+yum --enablerepo=epel  install optipng pngcrush gifsicle libjpeg* pngquant ImageMagick-devel -y
 mkdir $VIRTUAL_ENV/bin/lib
 cp -f /usr/bin/jpegtran $VIRTUAL_ENV
 cp -f /usr/bin/optipng $VIRTUAL_ENV
@@ -137,8 +137,8 @@ cp -f /usr/lib64/libimagequant.so* $VIRTUAL_ENV/bin/lib
 #building mozjpeg
 cd $VIRTUAL_ENV
 pwd
-echo 'yum install nasm autoconf automake libtool -y'
-yum install nasm autoconf automake libtool -y
+echo 'yum --enablerepo=epel  install nasm autoconf automake libtool -y'
+yum --enablerepo=epel  install nasm autoconf automake libtool -y
 echo 'wget https://github.com/mozilla/mozjpeg/releases/download/v3.2/mozjpeg-3.2-release-source.tar.gz'
 wget https://github.com/mozilla/mozjpeg/releases/download/v3.2/mozjpeg-3.2-release-source.tar.gz
 tar -zxvf mozjpeg-3.2-release-source.tar.gz
